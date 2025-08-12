@@ -2,115 +2,198 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Project Registration Form</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Advanced Project Registration</title>
 <style>
-    body {
-        font-family: Arial, sans-serif;
-        background-color: #eef2f3;
-        margin: 0;
-        padding: 0;
+  /* CSS Variables */
+  :root {
+    --primary-color: #2563eb;
+    --secondary-color: #1e4fc9;
+    --bg-color: #eef2f3;
+    --text-color: #333;
+    --font-main: 'Arial', sans-serif;
+  }
+
+  body {
+    font-family: var(--font-main);
+    background-color: var(--bg-color);
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+  }
+
+  /* Container with Flexbox */
+  .container {
+    background: white;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0px 4px 15px rgba(0,0,0,0.1);
+    width: 90%;
+    max-width: 400px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* Decorative pseudo-element */
+  .container::before {
+    content: "";
+    position: absolute;
+    top: -50px;
+    right: -50px;
+    width: 150px;
+    height: 150px;
+    background: var(--primary-color);
+    border-radius: 50%;
+    opacity: 0.2;
+  }
+
+  h2 {
+    text-align: center;
+    color: var(--text-color);
+    margin-bottom: 15px;
+  }
+
+  label {
+    display: block;
+    margin: 10px 0 5px;
+    font-weight: bold;
+    color: var(--text-color);
+  }
+
+  input, select {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 12px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+  }
+
+  /* Animated button */
+  button {
+    width: 100%;
+    padding: 10px;
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    animation: fadeIn 1s ease;
+  }
+
+  button:hover {
+    background-color: var(--secondary-color);
+    transform: scale(1.05);
+  }
+
+  /* Keyframes animation */
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* Responsive */
+  @media (max-width: 500px) {
+    .container {
+      padding: 20px;
     }
-    .form-container {
-        width: 350px;
-        background-color: white;
-        padding: 20px;
-        border-radius: 10px;
-        margin: 50px auto;
-        box-shadow: 0px 0px 10px rgba(0,0,0,0.2);
-    }
-    h2 {
-        text-align: center;
-        color: #333;
-    }
-    label {
-        display: block;
-        margin-top: 10px;
-        font-weight: bold;
-    }
-    input, select {
-        width: 100%;
-        padding: 8px;
-        margin-top: 5px;
-        border: 1px solid #ccc;
-        border-radius: 5px;
-    }
-    button {
-        width: 100%;
-        padding: 10px;
-        margin-top: 15px;
-        background-color: #4CAF50;
-        color: white;
-        font-size: 16px;
-        border: none;
-        border-radius: 5px;
-        cursor: pointer;
-    }
-    button:hover {
-        background-color: #45a049;
-    }
+  }
+
+  /* Click Me button */
+  .click-me {
+    background-color: #ff9800;
+    margin-top: 10px;
+  }
+  .click-me:hover {
+    background-color: #e68900;
+  }
 </style>
 </head>
 <body>
 
-<div class="form-container">
-    <h2>Project Registration</h2>
-    <form id="regForm">
-        <label for="name">Name:</label>
-        <input type="text" id="name" name="name">
+<div class="container">
+  <h2>Project Registration</h2>
+  <form id="regForm">
+    <label for="name">Full Name</label>
+    <input type="text" id="name">
 
-        <label for="email">Email:</label>
-        <input type="text" id="email" name="email">
+    <label for="email">Email Address</label>
+    <input type="text" id="email">
 
-        <label for="dept">Department:</label>
-        <select id="dept" name="dept">
-            <option value="">-- Select Department --</option>
-            <option value="CSE">CSE</option>
-            <option value="IT">IT</option>
-            <option value="ECE">ECE</option>
-            <option value="EEE">EEE</option>
-        </select>
+    <label for="department">Department</label>
+    <input type="text" id="department">
 
-        <label for="year">Year:</label>
-        <select id="year" name="year">
-            <option value="">-- Select Year --</option>
-            <option value="1">1st Year</option>
-            <option value="2">2nd Year</option>
-            <option value="3">3rd Year</option>
-            <option value="4">4th Year</option>
-        </select>
+    <label for="year">Year</label>
+    <select id="year">
+      <option value="">-- Select Year --</option>
+      <option>1st Year</option>
+      <option>2nd Year</option>
+      <option>3rd Year</option>
+      <option>4th Year</option>
+    </select>
 
-        <label for="title">Project Title:</label>
-        <input type="text" id="title" name="title">
+    <label for="project">Project Title</label>
+    <input type="text" id="project">
 
-        <button type="button" onclick="validateForm()">Submit</button>
-    </form>
+    <button type="submit">Register</button>
+  </form>
+
+  <button class="click-me" id="colorChangeBtn">Click Me</button>
 </div>
 
 <script>
-function validateForm() {
-    let name = document.getElementById("name").value.trim();
-    let email = document.getElementById("email").value.trim();
-    let dept = document.getElementById("dept").value;
-    let year = document.getElementById("year").value;
-    let title = document.getElementById("title").value.trim();
+  // Welcome alert on page load
+  window.addEventListener("load", () => {
+    alert("Welcome to the Project Registration Page!");
+  });
 
-    // Check if all fields are filled
-    if (!name || !email || !dept || !year || !title) {
-        alert("All fields must be filled!");
-        return;
+  // Reusable validation function
+  function validateForm(name, email, dept, year, project) {
+    if (!name || !email || !dept || !year || !project) {
+      alert("All fields must be filled");
+      return false;
     }
-
-    // Email format check
-    let emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const emailPattern = /^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/;
     if (!emailPattern.test(email)) {
-        alert("Please enter a valid email address!");
-        return;
+      alert("Please enter a valid email address");
+      return false;
     }
+    return true;
+  }
 
-    // Success message
-    alert("Registration Successful");
-    document.getElementById("regForm").reset();
-}
+  // Form submission event
+  document.getElementById("regForm").addEventListener("submit", function(e) {
+    e.preventDefault();
+    const name = document.getElementById("name").value.trim();
+    const email = document.getElementById("email").value.trim();
+    const dept = document.getElementById("department").value.trim();
+    const year = document.getElementById("year").value.trim();
+    const project = document.getElementById("project").value.trim();
+
+    if (validateForm(name, email, dept, year, project)) {
+      alert("Registration Successful");
+      this.reset();
+    }
+  });
+
+  // Click Me button changes container color and adds new text
+  document.getElementById("colorChangeBtn").addEventListener("click", () => {
+    const container = document.querySelector(".container");
+    const colors = ["#ffe0b2", "#c8e6c9", "#bbdefb", "#f8bbd0"];
+    const randomColor = colors[Math.floor(Math.random() * colors.length)];
+    container.style.backgroundColor = randomColor;
+
+    const newText = document.createElement("p");
+    newText.textContent = "You clicked the button! Color changed.";
+    newText.style.textAlign = "center";
+    newText.style.color = "#444";
+    container.appendChild(newText);
+  });
 </script>
 
 </body>
